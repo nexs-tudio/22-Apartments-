@@ -6,7 +6,7 @@ export default function AboutUs() {
       </h2>
       <div className="space-y-6 text-lg leading-relaxed opacity-90">
         <p>
-          Welcome to <span className="font-bold text-[#ffdf4f]">LUMI</span>N. We are dedicated to providing outstanding experiences built on a foundation of clean design and elegant solutions.
+          Welcome to <span className="font-serif italic text-xl mr-1 text-[#ffdf4f] drop-shadow-[0_0_5px_rgba(255,223,79,0.5)]">22</span><span className="font-bold tracking-widest uppercase">Apartments</span>. We are dedicated to providing outstanding living experiences built on a foundation of modern luxury and elegant residential solutions.
         </p>
         <p>
           Our journey began with a simple idea: blending the stark contrast of charcoal with the pristine clarity of soft white, tied together by a glowing touch of gold. This philosophy drives everything we create.
