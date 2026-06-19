@@ -5,10 +5,10 @@ import AboutUs from "@/components/AboutUs";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#fdfaf5]">
+    <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="flex-1 flex flex-col items-center justify-start p-4">
+      <main className="flex-1 flex flex-col items-center justify-start">
         <Hero />
         <AboutUs />
       </main>

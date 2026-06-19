@@ -1,15 +1,57 @@
 export const Hero = () => {
   return (
-    <div className="text-center max-w-2xl flex flex-col items-center">
-      <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight leading-tight">
-        Embrace the <span className="text-[#D4AF37]" style={{ textShadow: "0 0 15px rgba(212,175,55,0.8)" }}>Glowing</span> Simplicity
-      </h1>
-      <p className="text-lg sm:text-xl text-gray-700 mb-8 leading-relaxed">
-        A beautifully minimal focal point styled in our signature soft white and radiant gold. Designed to shine without the clutter.
-      </p>
-      <button className="px-8 py-3 bg-[#D4AF37] text-white font-bold text-lg rounded-full shadow-[0_0_15px_rgba(212,175,55,0.8)] hover:shadow-[0_0_25px_rgba(212,175,55,1)] hover:scale-105 transition-all duration-300">
-        Start Exploring
-      </button>
+    <div className="w-full max-w-[1400px] mx-auto px-10 py-16 flex flex-col lg:flex-row items-center gap-16">
+      
+      {/* Left Content */}
+      <div className="flex-1 flex flex-col items-start text-left">
+        <div className="flex items-center gap-4 mb-6">
+          <div className="h-[1px] w-12 bg-[#cca752]"></div>
+          <span className="text-[#cca752] text-xs font-bold tracking-[0.2em] uppercase">
+            Premium Residences &middot; IDH, Colombo
+          </span>
+        </div>
+
+        <h1 className="text-[6rem] leading-[0.85] font-bold text-[#1c1c1c] font-[family-name:var(--font-oswald)] uppercase">
+          LIVE<br />
+          ABOVE
+        </h1>
+        <h2 className="text-[6rem] leading-[0.8] text-[#cca752] font-[family-name:var(--font-playfair)] italic mb-8 mt-2 lowercase">
+          the rest
+        </h2>
+
+        <p className="text-[#1c1c1c]/70 max-w-[400px] mb-12 text-sm leading-relaxed">
+          22 meticulously designed apartments in IDH, Colombo, offering an elevated lifestyle where modern architecture meets curated living.
+        </p>
+
+        <div className="flex items-center gap-8">
+          <button className="px-8 py-3.5 bg-[#1c1c1c] text-white font-medium text-sm rounded-[32px] hover:bg-[#2a2a2a] transition-all">
+            View Apartments
+          </button>
+          <button className="text-[#1c1c1c] font-medium text-sm hover:text-[#cca752] transition-colors flex items-center gap-2">
+            Schedule Tour <span>&rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Right Image/Mockup */}
+      <div className="flex-1 relative w-full aspect-[4/5] bg-gray-200 rounded-[32px] overflow-hidden shadow-xl">
+        {/* Placeholder image background */}
+        <div className="absolute inset-0 bg-neutral-300"></div>
+        
+        {/* Badges */}
+        <div className="absolute top-8 right-6 flex flex-col gap-3">
+          <div className="bg-white px-4 py-2 rounded-full shadow-lg text-xs font-semibold flex items-center gap-2 text-[#1c1c1c]">
+            <span>🏊</span> Pool & Spa
+          </div>
+          <div className="bg-white px-4 py-2 rounded-full shadow-lg text-xs font-semibold flex items-center gap-2 text-[#1c1c1c]">
+            <span>🏋️</span> Fitness Center
+          </div>
+          <div className="bg-white px-4 py-2 rounded-full shadow-lg text-xs font-semibold flex items-center gap-2 text-[#1c1c1c]">
+            <span>🛡️</span> 24/7 Security
+          </div>
+        </div>
+      </div>
+      
     </div>
   );
 };
