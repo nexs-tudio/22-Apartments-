@@ -1,6 +1,6 @@
 export default function AboutUs() {
   return (
-    <section className="py-20 px-8 w-full max-w-5xl mx-auto my-16 bg-[#f4ecdf] text-[#1c1c1c] shadow-2xl rounded-2xl border-l-8 border-[#cca752]" id="about">
+    <section className="py-20 px-8 w-full max-w-5xl mx-auto my-16 bg-white text-[#1c1c1c] shadow-2xl rounded-2xl border-l-8 border-[#cca752]" id="about">
       <h2 className="text-4xl font-extrabold mb-6 text-[#cca752]">
         About Us
       </h2>
@@ -11,7 +11,7 @@ export default function AboutUs() {
         <p>
           Our journey began with a simple idea: blending the stark contrast of charcoal with the pristine clarity of soft white, tied together by a glowing touch of gold. This philosophy drives everything we create.
         </p>
-        <button className="mt-8 px-8 py-3 bg-[#1c1c1c] text-[#f4ecdf] font-bold rounded-full hover:bg-[#2a2a2a] transition-all">
+        <button className="mt-8 px-8 py-3 bg-[#1c1c1c] text-white font-bold rounded-full hover:bg-[#2a2a2a] transition-all">
           Learn More
         </button>
       </div>

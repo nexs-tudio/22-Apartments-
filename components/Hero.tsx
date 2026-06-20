@@ -1,6 +1,6 @@
 export const Hero = () => {
   return (
-    <div className="w-full max-w-[1400px] mx-auto px-10 py-16 flex flex-col lg:flex-row items-center gap-16">
+    <div className="w-full max-w-[1400px] mx-auto px-10 py-16 flex flex-col lg:flex-row items-center gap-16 bg-white rounded-[32px] shadow-[0_18px_50px_rgba(28,28,28,0.06)]">
       
       {/* Left Content */}
       <div className="flex-1 flex flex-col items-start text-left">

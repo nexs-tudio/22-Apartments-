@@ -11,20 +11,14 @@ export default function Header() {
         <Link href="#apartments" className="hover:text-[#1c1c1c] transition-colors">
           Apartments
         </Link>
-        <Link href="#amenities" className="hover:text-[#1c1c1c] transition-colors">
-          Amenities
+        <Link href="#gallery" className="hover:text-[#1c1c1c] transition-colors">
+          Gallery
         </Link>
-        <Link href="#floor-plans" className="hover:text-[#1c1c1c] transition-colors">
-          Floor Plans
+        <Link href="#about" className="hover:text-[#1c1c1c] transition-colors">
+          About Us
         </Link>
         <Link href="/contact" className="hover:text-[#1c1c1c] transition-colors">
-          Contact
-        </Link>
-        <Link 
-          href="#schedule" 
-          className="ml-4 px-6 py-2.5 bg-[#1c1c1c] text-white rounded-[24px] hover:bg-[#2a2a2a] transition-colors font-semibold"
-        >
-          Schedule Tour
+          Contact Us
         </Link>
       </nav>
     </header>
