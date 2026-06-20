@@ -24,7 +24,7 @@ export default function Footer() {
     <div className="mt-20">
 
       {/* ── Animated Skyline Divider ── */}
-      <div className="w-full overflow-hidden leading-none mb-[-2px] bg-[#f9f5ee]">
+      <div className="w-full overflow-hidden leading-none mb-[-2px] bg-[#f4ecdf]">
         <svg
           viewBox="0 0 1200 200"
           xmlns="http://www.w3.org/2000/svg"
@@ -45,8 +45,8 @@ export default function Footer() {
               50% { transform: translateY(-3px); }
             }
             @keyframes twinkle {
-              0%, 100% { opacity: 0.9; }
-              50% { opacity: 0.2; }
+              0%, 100% { opacity: 0.85; }
+              50% { opacity: 0.15; }
             }
             .bg-a { animation: float-a 5s ease-in-out infinite; }
             .bg-b { animation: float-b 5s ease-in-out infinite; animation-delay: -1.5s; }
@@ -59,6 +59,9 @@ export default function Footer() {
             .w5 { animation: twinkle 3.0s ease-in-out infinite; animation-delay: -2.0s; }
             .w6 { animation: twinkle 3.0s ease-in-out infinite; animation-delay: -2.4s; }
           `}</style>
+
+          {/* Cream sky background fills gaps between buildings */}
+          <rect x="0" y="0" width="1200" height="200" fill="#f4ecdf"/>
 
           {/* ── Group A ── */}
           <g className="bg-a">
@@ -85,9 +88,9 @@ export default function Footer() {
             <rect x="90" y="158" width="8" height="6" fill="#cca752" className="w4"/>
             <rect x="118" y="158" width="8" height="6" fill="#cca752" className="w1"/>
             {/* Tall spire */}
-            <rect x="145" y="70" width="35" height="130" fill="#222"/>
-            <rect x="152" y="55" width="21" height="20" fill="#222"/>
-            <rect x="159" y="48" width="7" height="10" fill="#222"/>
+            <rect x="145" y="70" width="35" height="130" fill="#1a1a1a"/>
+            <rect x="152" y="55" width="21" height="20" fill="#1a1a1a"/>
+            <rect x="159" y="48" width="7" height="10" fill="#1a1a1a"/>
             <line x1="162" y1="42" x2="162" y2="33" stroke="#cca752" strokeWidth="1.5" opacity="0.7"/>
             <rect x="148" y="80" width="6" height="4" fill="#cca752" className="w2"/>
             <rect x="159" y="80" width="6" height="4" fill="#cca752" className="w5"/>
@@ -103,7 +106,7 @@ export default function Footer() {
             <rect x="148" y="128" width="6" height="4" fill="#cca752" className="w6"/>
             <rect x="159" y="128" width="6" height="4" fill="#cca752" className="w0"/>
             {/* Small block */}
-            <rect x="188" y="130" width="28" height="70" fill="#1c1c1c"/>
+            <rect x="188" y="130" width="28" height="70" fill="#1a1a1a"/>
             <rect x="191" y="140" width="5" height="4" fill="#cca752" className="w3"/>
             <rect x="200" y="140" width="5" height="4" fill="#cca752" className="w1"/>
             <rect x="209" y="140" width="5" height="4" fill="#cca752" className="w5"/>
@@ -126,8 +129,8 @@ export default function Footer() {
 
           {/* ── Group B ── */}
           <g className="bg-b">
-            <rect x="285" y="110" width="38" height="90" fill="#202020"/>
-            <rect x="300" y="100" width="8" height="15" fill="#202020"/>
+            <rect x="285" y="110" width="38" height="90" fill="#1a1a1a"/>
+            <rect x="300" y="100" width="8" height="15" fill="#1a1a1a"/>
             <rect x="290" y="120" width="6" height="4" fill="#cca752" className="w1"/>
             <rect x="302" y="120" width="6" height="4" fill="#cca752" className="w4"/>
             <rect x="313" y="120" width="6" height="4" fill="#cca752" className="w0"/>
@@ -148,7 +151,7 @@ export default function Footer() {
             <rect x="338" y="126" width="5" height="4" fill="#cca752" className="w4"/>
             <rect x="348" y="138" width="5" height="4" fill="#cca752" className="w2"/>
             {/* Flat block */}
-            <rect x="370" y="105" width="45" height="95" fill="#1e1e1e"/>
+            <rect x="370" y="105" width="45" height="95" fill="#1a1a1a"/>
             <rect x="375" y="115" width="7" height="5" fill="#cca752" className="w3"/>
             <rect x="387" y="115" width="7" height="5" fill="#cca752" className="w0"/>
             <rect x="399" y="115" width="7" height="5" fill="#cca752" className="w5"/>
@@ -176,8 +179,8 @@ export default function Footer() {
             <rect x="428" y="118" width="5" height="4" fill="#cca752" className="w0"/>
             <rect x="446" y="118" width="5" height="4" fill="#cca752" className="w6"/>
             {/* Peaked block */}
-            <rect x="465" y="95" width="40" height="105" fill="#202020"/>
-            <polygon points="465,95 485,75 505,95" fill="#202020"/>
+            <rect x="465" y="95" width="40" height="105" fill="#1a1a1a"/>
+            <polygon points="465,95 485,75 505,95" fill="#1a1a1a"/>
             <rect x="470" y="105" width="6" height="4" fill="#cca752" className="w1"/>
             <rect x="481" y="105" width="6" height="4" fill="#cca752" className="w4"/>
             <rect x="492" y="105" width="6" height="4" fill="#cca752" className="w2"/>
@@ -196,10 +199,10 @@ export default function Footer() {
           {/* ── Group C ── */}
           <g className="bg-c">
             {/* Tall HQ block */}
-            <rect x="555" y="75" width="48" height="125" fill="#1e1e1e"/>
-            <rect x="562" y="62" width="34" height="17" fill="#1e1e1e"/>
-            <rect x="571" y="50" width="16" height="16" fill="#1e1e1e"/>
-            <rect x="577" y="42" width="4" height="12" fill="#1e1e1e"/>
+            <rect x="555" y="75" width="48" height="125" fill="#1a1a1a"/>
+            <rect x="562" y="62" width="34" height="17" fill="#1a1a1a"/>
+            <rect x="571" y="50" width="16" height="16" fill="#1a1a1a"/>
+            <rect x="577" y="42" width="4" height="12" fill="#1a1a1a"/>
             <line x1="579" y1="36" x2="579" y2="26" stroke="#cca752" strokeWidth="1.5" opacity="0.7"/>
             <rect x="558" y="85" width="7" height="5" fill="#cca752" className="w2"/>
             <rect x="570" y="85" width="7" height="5" fill="#cca752" className="w5"/>
@@ -226,9 +229,9 @@ export default function Footer() {
             <rect x="616" y="138" width="6" height="4" fill="#cca752" className="w1"/>
             <rect x="627" y="138" width="6" height="4" fill="#cca752" className="w4"/>
             {/* Narrow spire */}
-            <rect x="658" y="85" width="28" height="115" fill="#222"/>
-            <rect x="663" y="73" width="18" height="16" fill="#222"/>
-            <rect x="669" y="63" width="6" height="14" fill="#222"/>
+            <rect x="658" y="85" width="28" height="115" fill="#1a1a1a"/>
+            <rect x="663" y="73" width="18" height="16" fill="#1a1a1a"/>
+            <rect x="669" y="63" width="6" height="14" fill="#1a1a1a"/>
             <rect x="661" y="95" width="5" height="4" fill="#cca752" className="w3"/>
             <rect x="671" y="95" width="5" height="4" fill="#cca752" className="w0"/>
             <rect x="681" y="95" width="5" height="4" fill="#cca752" className="w6"/>
@@ -238,7 +241,7 @@ export default function Footer() {
             <rect x="671" y="119" width="5" height="4" fill="#cca752" className="w4"/>
             <rect x="681" y="131" width="5" height="4" fill="#cca752" className="w0"/>
             {/* Short block */}
-            <rect x="695" y="120" width="42" height="80" fill="#1c1c1c"/>
+            <rect x="695" y="120" width="42" height="80" fill="#1a1a1a"/>
             <rect x="698" y="130" width="7" height="5" fill="#cca752" className="w6"/>
             <rect x="710" y="130" width="7" height="5" fill="#cca752" className="w2"/>
             <rect x="722" y="130" width="7" height="5" fill="#cca752" className="w4"/>
@@ -263,17 +266,17 @@ export default function Footer() {
             <rect x="751" y="123" width="6" height="4" fill="#cca752" className="w2"/>
             <rect x="773" y="123" width="6" height="4" fill="#cca752" className="w5"/>
             {/* Peaked block */}
-            <rect x="796" y="100" width="30" height="100" fill="#202020"/>
-            <polygon points="796,100 811,82 826,100" fill="#202020"/>
+            <rect x="796" y="100" width="30" height="100" fill="#1a1a1a"/>
+            <polygon points="796,100 811,82 826,100" fill="#1a1a1a"/>
             <rect x="800" y="110" width="5" height="4" fill="#cca752" className="w1"/>
             <rect x="810" y="110" width="5" height="4" fill="#cca752" className="w4"/>
             <rect x="820" y="110" width="5" height="4" fill="#cca752" className="w0"/>
             <rect x="800" y="123" width="5" height="4" fill="#cca752" className="w6"/>
             <rect x="820" y="123" width="5" height="4" fill="#cca752" className="w2"/>
             {/* Wide block */}
-            <rect x="836" y="80" width="45" height="120" fill="#1e1e1e"/>
-            <rect x="843" y="68" width="31" height="16" fill="#1e1e1e"/>
-            <rect x="851" y="56" width="15" height="16" fill="#1e1e1e"/>
+            <rect x="836" y="80" width="45" height="120" fill="#1a1a1a"/>
+            <rect x="843" y="68" width="31" height="16" fill="#1a1a1a"/>
+            <rect x="851" y="56" width="15" height="16" fill="#1a1a1a"/>
             <rect x="840" y="90" width="7" height="5" fill="#cca752" className="w3"/>
             <rect x="852" y="90" width="7" height="5" fill="#cca752" className="w0"/>
             <rect x="864" y="90" width="7" height="5" fill="#cca752" className="w5"/>
@@ -294,8 +297,8 @@ export default function Footer() {
             <rect x="894" y="138" width="6" height="4" fill="#cca752" className="w2"/>
             <rect x="916" y="138" width="6" height="4" fill="#cca752" className="w5"/>
             {/* Narrow block */}
-            <rect x="936" y="90" width="32" height="110" fill="#222"/>
-            <rect x="940" y="78" width="24" height="16" fill="#222"/>
+            <rect x="936" y="90" width="32" height="110" fill="#1a1a1a"/>
+            <rect x="940" y="78" width="24" height="16" fill="#1a1a1a"/>
             <rect x="939" y="100" width="5" height="4" fill="#cca752" className="w1"/>
             <rect x="949" y="100" width="5" height="4" fill="#cca752" className="w3"/>
             <rect x="959" y="100" width="5" height="4" fill="#cca752" className="w6"/>
@@ -304,7 +307,7 @@ export default function Footer() {
             <rect x="939" y="126" width="5" height="4" fill="#cca752" className="w2"/>
             <rect x="949" y="139" width="5" height="4" fill="#cca752" className="w5"/>
             {/* Right block */}
-            <rect x="978" y="105" width="40" height="95" fill="#1c1c1c"/>
+            <rect x="978" y="105" width="40" height="95" fill="#1a1a1a"/>
             <rect x="983" y="115" width="7" height="5" fill="#cca752" className="w0"/>
             <rect x="995" y="115" width="7" height="5" fill="#cca752" className="w3"/>
             <rect x="1007" y="115" width="7" height="5" fill="#cca752" className="w6"/>
@@ -325,7 +328,7 @@ export default function Footer() {
             <rect x="1031" y="121" width="5" height="4" fill="#cca752" className="w3"/>
             <rect x="1051" y="121" width="5" height="4" fill="#cca752" className="w1"/>
             {/* End blocks */}
-            <rect x="1073" y="95" width="28" height="105" fill="#1e1e1e"/>
+            <rect x="1073" y="95" width="28" height="105" fill="#1a1a1a"/>
             <rect x="1076" y="107" width="5" height="4" fill="#cca752" className="w0"/>
             <rect x="1086" y="107" width="5" height="4" fill="#cca752" className="w4"/>
             <rect x="1096" y="107" width="5" height="4" fill="#cca752" className="w2"/>
