@@ -16,25 +16,23 @@ const UNITS = [
 ];
 
 export default function Header() {
-  const [scrolled,      setScrolled]      = useState(false);
-  const [hidden,        setHidden]        = useState(false);
-  const [scrollPct,     setScrollPct]     = useState(0);
-  const [activeSection, setActiveSection] = useState('');
-  const [menuOpen,      setMenuOpen]      = useState(false);
-  const [dropdownOpen,  setDropdownOpen]  = useState(false);
-  const [greeting,      setGreeting]      = useState('');
-  const [ctaLabel,      setCtaLabel]      = useState('Contact Us');
+  const [scrolled,        setScrolled]        = useState(false);
+  const [hidden,          setHidden]          = useState(false);
+  const [scrollPct,       setScrollPct]       = useState(0);
+  const [activeSection,   setActiveSection]   = useState('');
+  const [menuOpen,        setMenuOpen]        = useState(false);
+  const [dropdownOpen,    setDropdownOpen]    = useState(false);
+  const [greeting,        setGreeting]        = useState('');
+  const [ctaLabel,        setCtaLabel]        = useState('Contact Us');
   const [bannerDismissed, setBannerDismissed] = useState(false);
   const lastY   = useRef(0);
   const dropRef = useRef<HTMLDivElement>(null);
 
-  /* greeting */
   useEffect(() => {
     const h = new Date().getHours();
     setGreeting(h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening');
   }, []);
 
-  /* scroll */
   useEffect(() => {
     const onScroll = () => {
       const y   = window.scrollY;
@@ -49,39 +47,38 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  /* active section via IntersectionObserver */
   useEffect(() => {
     const targets = NAV_LINKS.map(l => document.getElementById(l.section)).filter(Boolean) as HTMLElement[];
     if (!targets.length) return;
     const obs = new IntersectionObserver(
-      entries => {
-        entries.forEach(e => { if (e.isIntersecting) setActiveSection(e.target.id); });
-      },
+      entries => { entries.forEach(e => { if (e.isIntersecting) setActiveSection(e.target.id); }); },
       { rootMargin: '-40% 0px -55% 0px' }
     );
     targets.forEach(t => obs.observe(t));
     return () => obs.disconnect();
   }, []);
 
-  /* close dropdown on outside click */
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (dropRef.current && !dropRef.current.contains(e.target as Node)) {
-        setDropdownOpen(false);
-      }
+      if (dropRef.current && !dropRef.current.contains(e.target as Node)) setDropdownOpen(false);
     };
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
-  /* smooth scroll with header offset */
+  /* close drawer on resize to desktop */
+  useEffect(() => {
+    const onResize = () => { if (window.innerWidth > 768) setMenuOpen(false); };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   const scrollTo = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!href.startsWith('#')) return;
     e.preventDefault();
     const el = document.getElementById(href.slice(1));
     if (!el) return;
-    const offset = 90;
-    window.scrollTo({ top: el.offsetTop - offset, behavior: 'smooth' });
+    window.scrollTo({ top: el.offsetTop - 90, behavior: 'smooth' });
     setMenuOpen(false);
   }, []);
 
@@ -90,14 +87,11 @@ export default function Header() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap');
 
-        /* ── entrance animations ── */
         @keyframes hdr-in    { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
         @keyframes num-in    { from{opacity:0;transform:translateX(-10px) scale(0.85)} to{opacity:1;transform:translateX(0) scale(1)} }
         @keyframes text-in   { from{opacity:0;transform:translateX(10px)} to{opacity:1;transform:translateX(0)} }
         @keyframes nav-in    { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
         @keyframes dot-pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(2);opacity:0.4} }
-        @keyframes bar-grow  { from{transform:scaleX(0)} to{transform:scaleX(1)} }
-        @keyframes badge-in  { from{opacity:0;transform:scale(0.7)} to{opacity:1;transform:scale(1)} }
         @keyframes drawer-in { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
         @keyframes drop-in   { from{opacity:0;transform:translateY(-6px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
         @keyframes banner-in { from{height:0;opacity:0} to{height:36px;opacity:1} }
@@ -165,10 +159,7 @@ export default function Header() {
         .hdr-logo-sep { width:1px; height:24px; background:#1a1a1a; opacity:.18;
           transition:background .4s ease; }
         .hdr-bar.scrolled .hdr-logo-sep { background:#f4ecdf; }
-        .hdr-logo-stack {
-          font-family:'Oswald',sans-serif;
-          animation: text-in .5s ease .1s both;
-        }
+        .hdr-logo-stack { font-family:'Oswald',sans-serif; animation: text-in .5s ease .1s both; }
         .hdr-logo-main {
           font-size:13px; font-weight:600; letter-spacing:4px;
           text-transform:uppercase; color:#1a1a1a; line-height:1.1; display:block;
@@ -187,7 +178,7 @@ export default function Header() {
           display:flex; align-items:center; gap:5px;
           background:#1a1a1a; border-radius:20px;
           padding:4px 10px 4px 7px;
-          animation: badge-in .4s ease .4s both;
+          animation: nav-in .4s ease .4s both;
           transition:background .4s ease;
           cursor:default; flex-shrink:0;
         }
@@ -204,7 +195,6 @@ export default function Header() {
         /* ── nav ── */
         .hdr-nav { display:flex; align-items:center; gap:2px; }
 
-        /* apartments dropdown trigger */
         .hdr-drop-wrap { position:relative; }
         .hdr-nav-link {
           position:relative; font-family:'Oswald',sans-serif;
@@ -214,9 +204,7 @@ export default function Header() {
           display:flex; align-items:center; gap:5px;
           transition:color .22s ease; border:none; background:none; cursor:pointer;
         }
-        .hdr-nav-link .hdr-arrow {
-          font-size:8px; transition:transform .22s ease; display:inline-block;
-        }
+        .hdr-nav-link .hdr-arrow { font-size:8px; transition:transform .22s ease; display:inline-block; }
         .hdr-drop-wrap.open .hdr-arrow { transform:rotate(180deg); }
         .hdr-nav-link::after {
           content:''; position:absolute; bottom:2px; left:50%;
@@ -233,7 +221,6 @@ export default function Header() {
         .hdr-bar.scrolled .hdr-nav-link.active { color:#f4ecdf; }
         .hdr-bar.scrolled .hdr-nav-link::after { background:#cca752; }
 
-        /* nth stagger */
         .hdr-nav > *:nth-child(1) { animation:nav-in .4s ease .18s both; }
         .hdr-nav > *:nth-child(2) { animation:nav-in .4s ease .24s both; }
         .hdr-nav > *:nth-child(3) { animation:nav-in .4s ease .30s both; }
@@ -243,7 +230,8 @@ export default function Header() {
         .hdr-dropdown {
           position:absolute; top:calc(100% + 12px); left:50%;
           transform:translateX(-50%);
-          width:340px;
+          /* FIX: prevent dropdown from going off-screen on tablets */
+          width:min(340px, 90vw);
           background:#1a1a1a; border-top:2px solid #cca752;
           box-shadow:0 16px 48px rgba(0,0,0,0.28);
           animation: drop-in .22s ease both;
@@ -268,16 +256,10 @@ export default function Header() {
           font-family:'Oswald',sans-serif; font-size:14px; font-weight:600;
           letter-spacing:1px; color:#f4ecdf; display:block;
         }
-        .hdr-drop-size {
-          font-size:11px; color:rgba(244,236,223,0.45); display:block; margin-top:2px;
-        }
+        .hdr-drop-size { font-size:11px; color:rgba(244,236,223,0.45); display:block; margin-top:2px; }
         .hdr-drop-right { text-align:right; }
-        .hdr-drop-price {
-          font-size:11px; color:#cca752; display:block; font-weight:600;
-        }
-        .hdr-drop-avail {
-          font-size:10px; display:block; margin-top:3px;
-        }
+        .hdr-drop-price { font-size:11px; color:#cca752; display:block; font-weight:600; }
+        .hdr-drop-avail { font-size:10px; display:block; margin-top:3px; }
         .hdr-drop-avail.avail { color:rgba(244,236,223,0.4); }
         .hdr-drop-avail.sold  { color:rgba(244,236,223,0.22); }
         .hdr-avail-pip {
@@ -298,23 +280,15 @@ export default function Header() {
           letter-spacing:2.5px; text-transform:uppercase;
           color:#1a1a1a; border:1.5px solid rgba(28,28,28,0.4);
           padding:9px 20px; text-decoration:none; white-space:nowrap;
-          transition:background .22s ease, color .22s ease, border-color .22s ease,
-                      letter-spacing .22s ease;
+          transition:background .22s ease, color .22s ease, border-color .22s ease, letter-spacing .22s ease;
           animation:nav-in .4s ease .42s both;
           display:inline-block;
         }
-        .hdr-cta:hover {
-          background:#1a1a1a; color:#f4ecdf;
-          border-color:#1a1a1a; letter-spacing:3.5px;
-        }
-        .hdr-bar.scrolled .hdr-cta {
-          border-color:#cca752; color:#cca752;
-        }
-        .hdr-bar.scrolled .hdr-cta:hover {
-          background:#cca752; color:#1a1a1a; border-color:#cca752;
-        }
+        .hdr-cta:hover { background:#1a1a1a; color:#f4ecdf; border-color:#1a1a1a; letter-spacing:3.5px; }
+        .hdr-bar.scrolled .hdr-cta { border-color:#cca752; color:#cca752; }
+        .hdr-bar.scrolled .hdr-cta:hover { background:#cca752; color:#1a1a1a; border-color:#cca752; }
 
-        /* ── greeting chip (shows when NOT scrolled) ── */
+        /* ── greeting chip ── */
         .hdr-greeting {
           font-family:'Lato',sans-serif; font-size:11px;
           color:rgba(28,28,28,0.35); letter-spacing:0.5px;
@@ -328,6 +302,9 @@ export default function Header() {
         .hdr-burger {
           display:none; flex-direction:column; gap:5px;
           background:none; border:none; cursor:pointer; padding:4px;
+          /* FIX: make touch target big enough — minimum 44x44px */
+          min-width:44px; min-height:44px;
+          align-items:center; justify-content:center;
         }
         .hdr-burger span {
           display:block; width:22px; height:1.5px; background:#1a1a1a;
@@ -343,6 +320,9 @@ export default function Header() {
         .hdr-drawer {
           display:none; flex-direction:column;
           background:#1a1a1a;
+          /* FIX: add max-height + scroll so drawer works on very short phones */
+          max-height:calc(100vh - 74px);
+          overflow-y:auto;
           padding:8px 0 24px;
           animation:drawer-in .25s ease both;
           border-top:1px solid rgba(244,236,223,0.08);
@@ -351,10 +331,13 @@ export default function Header() {
           font-family:'Oswald',sans-serif; font-size:14px; font-weight:500;
           letter-spacing:3px; text-transform:uppercase;
           color:rgba(244,236,223,0.65); text-decoration:none;
-          padding:14px 32px;
+          /* FIX: increase touch target */
+          padding:16px 32px;
           border-bottom:1px solid rgba(244,236,223,0.05);
           transition:color .2s ease, padding-left .2s ease;
           display:block;
+          /* FIX: minimum tap height */
+          min-height:48px; display:flex; align-items:center;
         }
         .hdr-drawer-link:hover { color:#cca752; padding-left:40px; }
         .hdr-drawer-cta {
@@ -362,18 +345,41 @@ export default function Header() {
           font-family:'Oswald',sans-serif; font-size:12px; font-weight:600;
           letter-spacing:2.5px; text-transform:uppercase;
           background:#cca752; color:#1a1a1a;
-          padding:14px; text-align:center; text-decoration:none; display:block;
+          /* FIX: bigger tap target */
+          padding:16px; text-align:center; text-decoration:none; display:block;
           transition:background .22s ease;
+          border-radius:2px;
         }
         .hdr-drawer-cta:hover { background:#b8923d; }
 
-        @media (max-width:768px) {
-          .hdr-nav, .hdr-greeting { display:none; }
-          .hdr-burger { display:flex; }
-          .hdr-drawer { display:flex; }
-          .hdr-badge { display:none; }
-          .hdr-inner { padding:14px 20px; }
-          .hdr-banner { font-size:10px; letter-spacing:1.5px; padding:0 40px; }
+        /* ── RESPONSIVE BREAKPOINTS ── */
+
+        /* Tablet: hide greeting + badge to save space */
+        @media (max-width: 1024px) {
+          .hdr-greeting { display:none; }
+          .hdr-badge    { display:none; }
+          .hdr-inner    { padding:16px 28px; gap:12px; }
+        }
+
+        /* Mobile: switch to hamburger */
+        @media (max-width: 768px) {
+          .hdr-nav      { display:none; }
+          .hdr-burger   { display:flex; }
+          /* FIX: drawer is display:none by default, only show when menuOpen */
+          .hdr-inner    { padding:12px 16px; }
+          .hdr-banner   { font-size:10px; letter-spacing:1.5px; padding:0 44px 0 16px; }
+          /* FIX: ensure banner text doesn't overflow on very small screens */
+          .hdr-banner span:not(.hdr-banner-dot):not(.hdr-banner-close) {
+            white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+            max-width:calc(100vw - 80px);
+          }
+        }
+
+        /* Small phones */
+        @media (max-width: 390px) {
+          .hdr-logo-num  { font-size:26px; }
+          .hdr-logo-main { font-size:11px; letter-spacing:2px; }
+          .hdr-logo-sub  { display:none; }
         }
       `}</style>
 
@@ -416,19 +422,18 @@ export default function Header() {
               </span>
             </Link>
 
-            {/* Availability badge */}
+            {/* Availability badge — hidden on mobile/tablet via CSS */}
             <div className="hdr-badge" aria-label="3 units currently available">
               <span className="hdr-badge-dot" aria-hidden="true" />
               <span className="hdr-badge-text">3 units available</span>
             </div>
 
-            {/* Greeting */}
+            {/* Greeting — hidden on tablet/mobile via CSS */}
             <span className="hdr-greeting" aria-hidden="true">{greeting}, Colombo</span>
 
             {/* Desktop Nav */}
             <nav className="hdr-nav" aria-label="Main navigation">
 
-              {/* Apartments with dropdown */}
               <div className={`hdr-drop-wrap${dropdownOpen ? ' open' : ''}`} ref={dropRef}>
                 <button
                   className={`hdr-nav-link${activeSection === 'apartments' ? ' active' : ''}`}
@@ -472,7 +477,6 @@ export default function Header() {
                 )}
               </div>
 
-              {/* Gallery & About */}
               {NAV_LINKS.slice(1).map(({ href, label, section }) => (
                 <Link
                   key={href}
@@ -484,13 +488,12 @@ export default function Header() {
                 </Link>
               ))}
 
-              {/* CTA */}
               <Link href="/contact" className="hdr-cta" style={{ marginLeft: '8px' }}>
                 {ctaLabel}
               </Link>
             </nav>
 
-            {/* Hamburger */}
+            {/* Hamburger — shown on mobile only */}
             <button
               className={`hdr-burger${menuOpen ? ' open' : ''}`}
               onClick={() => setMenuOpen(o => !o)}
@@ -523,7 +526,7 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Spacer */}
+      {/* Spacer — accounts for fixed header height */}
       <div style={{ height: bannerDismissed ? '74px' : '110px' }} aria-hidden="true" />
     </>
   );
