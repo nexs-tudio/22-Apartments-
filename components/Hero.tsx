@@ -6,6 +6,12 @@ import * as THREE from "three";
 export const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  const scrollToProperties = () => {
+    const el = document.getElementById('properties');
+    if (!el) return;
+    window.scrollTo({ top: el.offsetTop - 90, behavior: 'smooth' });
+  };
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -380,19 +386,16 @@ export const Hero = () => {
             where modern architecture meets curated living.
           </p>
 
-          {/* CTAs */}
+          {/* CTA */}
           <div
-            className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-7"
+            className="flex items-start sm:items-center gap-4 sm:gap-7"
             style={{ animation: "fadeUp 0.6s ease forwards 0.8s", opacity: 0 }}
           >
-            <button className="px-6 sm:px-8 py-3 bg-[#1c1c1c] text-white text-sm font-medium hover:bg-[#2e2e2e] transition-all hover:-translate-y-px w-full sm:w-auto">
+            <button
+              onClick={scrollToProperties}
+              className="px-6 sm:px-8 py-3 bg-[#1c1c1c] text-white text-sm font-medium hover:bg-[#2e2e2e] transition-all hover:-translate-y-px w-full sm:w-auto"
+            >
               View Apartments
-            </button>
-            <button className="text-sm font-medium text-[#1c1c1c] hover:text-[#cca752] transition-colors flex items-center gap-1.5 group">
-              Schedule Tour
-              <svg className="transition-transform group-hover:translate-x-1" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
             </button>
           </div>
 
