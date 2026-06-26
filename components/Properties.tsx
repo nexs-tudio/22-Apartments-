@@ -60,7 +60,7 @@ export const Properties = () => {
   };
 
   return (
-    <section id="properties" className="w-full bg-[#f4ecdf] py-24 px-6">
+    <section id="properties" className="w-full bg-white py-24 px-6">
       <div className="max-w-5xl mx-auto">
         {/* Section label */}
         <div className="flex items-center gap-3 mb-5">

@@ -37,17 +37,10 @@ export const ContactUs = () => {
         },
     ];
 
-    const socialLinks = [
-        { label: "FB", href: "#" },
-        { label: "IG", href: "#" },
-        { label: "WA", href: "#" },
-        { label: "Li", href: "#" },
-    ];
-
     return (
         <section
             id="contact"
-            className="w-full bg-[#f4ecdf] py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8"
+            className="w-full bg-white py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8"
         >
             <div className="max-w-7xl mx-auto">
 
@@ -100,10 +93,10 @@ export const ContactUs = () => {
                         </div>
                     </div>
 
-                    {/* ── Right: dark panel ── */}
+                    {/* ── Right: dark panel with Our Promise ── */}
                     <div className="bg-[#1c1c1c] p-6 sm:p-8 md:p-10 flex flex-col justify-between min-h-80 md:min-h-96">
 
-                        {/* Watermark number */}
+                        {/* Promise content (moved from AboutUs) */}
                         <div className="relative">
                             <span
                                 className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 text-7xl sm:text-[120px] font-bold leading-none select-none pointer-events-none"
@@ -122,28 +115,18 @@ export const ContactUs = () => {
                                     "Transparency builds trust. That is the founding belief of everything we do."
                                 </p>
                                 <footer className="text-[10px] sm:text-xs text-[#fdfaf5]/40 tracking-widest uppercase">
-                                    — Apartment 22
+                                    — 22 Apartments
                                 </footer>
                             </blockquote>
-                        </div>
 
-                        {/* Divider */}
-                        <div className="mt-6 sm:mt-8 md:mt-10 pt-6 sm:pt-8 border-t border-white/10">
-                            <p className="text-xs text-[#fdfaf5]/40 mb-3 sm:mb-4 uppercase tracking-widest">
-                                Find us on
+                            <p className="relative z-10 text-sm sm:text-base leading-relaxed text-[#d4c5a9] mt-5 sm:mt-6">
+                                Every landlord we partner with is committed to honest communication. Every
+                                listing has passed our internal review. Every person — whether searching from
+                                Colombo or Copenhagen — deserves to be treated with respect and honesty.
                             </p>
-                            <div className="flex gap-2 sm:gap-3">
-                                {socialLinks.map(({ label, href }) => (
-                                    <a
-                                        key={label}
-                                        href={href}
-                                        aria-label={label}
-                                        className="w-8 h-8 sm:w-9 sm:h-9 border border-white/15 flex items-center justify-center text-xs font-semibold text-[#fdfaf5]/50 hover:border-[#cca752] hover:text-[#cca752] transition-colors duration-200"
-                                    >
-                                        {label}
-                                    </a>
-                                ))}
-                            </div>
+                            <p className="relative z-10 italic text-[#cca752] text-sm sm:text-base mt-3">
+                                This is more than a rental platform. It is a community built on trust.
+                            </p>
                         </div>
                     </div>
 
