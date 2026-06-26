@@ -47,50 +47,50 @@ export const ContactUs = () => {
     return (
         <section
             id="contact"
-            className="w-full bg-[#f4ecdf] py-24 px-6"
+            className="w-full bg-[#f4ecdf] py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8"
         >
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-7xl mx-auto">
 
                 {/* Section label */}
-                <div className="flex items-center gap-3 mb-5">
+                <div className="flex items-center gap-3 mb-8 sm:mb-12">
                     <span className="text-xs font-bold tracking-[0.14em] uppercase text-[#cca752]">
                         Contact Us
                     </span>
-                    <span className="block w-7 h-px bg-[#cca752]" />
+                    <span className="block w-6 sm:w-7 h-px bg-[#cca752]" />
                 </div>
 
                 {/* Two-column layout */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
 
                     {/* ── Left: headline + contact details ── */}
                     <div>
-                        <h2 className="font-serif text-4xl sm:text-5xl font-bold text-[#1c1c1c] leading-[1.18] mb-5">
+                        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1c1c1c] leading-tight mb-4 sm:mb-6">
                             Let's find your
                             <br />
                             <em className="not-italic text-[#cca752]">place to belong.</em>
                         </h2>
-                        <p className="text-base text-[#1c1c1c]/60 leading-relaxed mb-12 max-w-sm">
+                        <p className="text-sm sm:text-base text-[#1c1c1c]/60 leading-relaxed mb-8 sm:mb-12 max-w-sm">
                             Whether you're a local searching for a new home or an international renter planning your move, our team is here to guide you every step of the way.
                         </p>
 
                         {/* Contact info items */}
-                        <div className="flex flex-col gap-6">
+                        <div className="flex flex-col gap-5 sm:gap-6">
                             {contactItems.map((item) => (
                                 <div key={item.label} className="flex items-start gap-4">
-                                    <div className="w-11 h-11 rounded-sm bg-[#1c1c1c] flex items-center justify-center shrink-0">
+                                    <div className="w-10 h-10 sm:w-11 sm:h-11 bg-[#1c1c1c] flex items-center justify-center flex-shrink-0">
                                         {item.icon}
                                     </div>
                                     <div className="flex flex-col gap-1 pt-0.5">
                                         <span className="text-xs font-semibold tracking-wide uppercase text-[#1c1c1c]">
                                             {item.label}
                                         </span>
-                                        <div className="flex items-center gap-2 flex-wrap">
+                                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2 flex-wrap">
                                             {item.values.map((v, index) => (
                                                 <div key={v} className="flex items-center gap-2">
                                                     {index > 0 && (
-                                                        <span className="w-1 h-1 rounded-full bg-[#cca752] shrink-0" />
+                                                        <span className="hidden sm:block w-1 h-1 bg-[#cca752] flex-shrink-0" />
                                                     )}
-                                                    <span className="text-sm text-[#1c1c1c]/60">{v}</span>
+                                                    <span className="text-xs sm:text-sm text-[#1c1c1c]/60">{v}</span>
                                                 </div>
                                             ))}
                                         </div>
@@ -101,44 +101,44 @@ export const ContactUs = () => {
                     </div>
 
                     {/* ── Right: dark panel ── */}
-                    <div className="bg-[#1c1c1c] rounded-sm p-10 flex flex-col justify-between min-h-90">
+                    <div className="bg-[#1c1c1c] p-6 sm:p-8 md:p-10 flex flex-col justify-between min-h-80 md:min-h-96">
 
                         {/* Watermark number */}
                         <div className="relative">
                             <span
-                                className="absolute -top-4 -right-2 text-[120px] font-bold leading-none select-none pointer-events-none"
+                                className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 text-7xl sm:text-[120px] font-bold leading-none select-none pointer-events-none"
                                 style={{ color: "rgba(204,167,82,0.06)" }}
                                 aria-hidden="true"
                             >
                                 22
                             </span>
 
-                            <p className="text-xs font-semibold tracking-[0.14em] uppercase text-[#cca752] mb-6 relative z-10">
+                            <p className="text-xs font-semibold tracking-[0.14em] uppercase text-[#cca752] mb-4 sm:mb-6 relative z-10">
                                 Our Promise
                             </p>
 
                             <blockquote className="relative z-10">
-                                <p className="font-serif text-2xl sm:text-3xl italic font-semibold text-[#f4ecdf] leading-snug mb-6">
+                                <p className="font-serif text-xl sm:text-2xl md:text-3xl italic font-semibold text-[#f4ecdf] leading-snug mb-4 sm:mb-6">
                                     "Transparency builds trust. That is the founding belief of everything we do."
                                 </p>
-                                <footer className="text-xs text-[#fdfaf5]/40 tracking-widest uppercase">
+                                <footer className="text-[10px] sm:text-xs text-[#fdfaf5]/40 tracking-widest uppercase">
                                     — Apartment 22
                                 </footer>
                             </blockquote>
                         </div>
 
                         {/* Divider */}
-                        <div className="mt-10 pt-8 border-t border-white/10">
-                            <p className="text-xs text-[#fdfaf5]/40 mb-4 uppercase tracking-widest">
+                        <div className="mt-6 sm:mt-8 md:mt-10 pt-6 sm:pt-8 border-t border-white/10">
+                            <p className="text-xs text-[#fdfaf5]/40 mb-3 sm:mb-4 uppercase tracking-widest">
                                 Find us on
                             </p>
-                            <div className="flex gap-3">
+                            <div className="flex gap-2 sm:gap-3">
                                 {socialLinks.map(({ label, href }) => (
                                     <a
                                         key={label}
                                         href={href}
                                         aria-label={label}
-                                        className="w-9 h-9 border border-white/15 rounded-sm flex items-center justify-center text-xs font-semibold text-[#fdfaf5]/50 hover:border-[#cca752] hover:text-[#cca752] transition-colors duration-200"
+                                        className="w-8 h-8 sm:w-9 sm:h-9 border border-white/15 flex items-center justify-center text-xs font-semibold text-[#fdfaf5]/50 hover:border-[#cca752] hover:text-[#cca752] transition-colors duration-200"
                                     >
                                         {label}
                                     </a>
@@ -148,9 +148,6 @@ export const ContactUs = () => {
                     </div>
 
                 </div>
-
-                {/* Bottom rule */}
-                {/* <div className="mt-20 h-px bg-[#1c1c1c]/10" /> */}
             </div>
         </section>
     );

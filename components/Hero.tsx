@@ -234,54 +234,40 @@ export const Hero = () => {
       );
       trunk.position.y = 0.25;
       g.add(trunk);
-      [
-        { r: 0.4, h: 0.55, y: 0.55 },
-        { r: 0.3, h: 0.45, y: 0.85 },
-        { r: 0.18, h: 0.35, y: 1.1 },
-      ].forEach((l) => {
-        const cone = new THREE.Mesh(
-          new THREE.ConeGeometry(l.r, l.h, 8),
-          mat(0x2d6b3e, 0.9)
-        );
-        cone.position.y = l.y;
-        cone.castShadow = true;
-        g.add(cone);
-      });
-      g.position.set(x, -2, z);
+
+      const foliage = new THREE.Mesh(
+        new THREE.SphereGeometry(0.28, 8, 8),
+        new THREE.MeshStandardMaterial({
+          color: 0x5a7a3a,
+          roughness: 0.75,
+          metalness: 0,
+        })
+      );
+      foliage.position.y = 0.6;
+      foliage.castShadow = true;
+      g.add(foliage);
+      g.position.set(x, -2.05, z);
       return g;
     };
-    scene.add(makeTree(-2.8, 1.2));
-    scene.add(makeTree(-3.3, -0.5));
-    scene.add(makeTree(3.2, 0.8));
-    scene.add(makeTree(3.8, -1));
 
-    // ── Floating particles ────────────────────────────────
+    scene.add(makeTree(-4, 1));
+    scene.add(makeTree(4.2, 1.5));
+    scene.add(makeTree(-5.5, -1));
+
+    // ── Particles ─────────────────────────────────────────
     const particles = new THREE.Group();
-    const pMat = new THREE.MeshStandardMaterial({
-      color: 0xfff0a0,
-      emissive: 0xfff080,
-      emissiveIntensity: 0.6,
-    });
-    for (let i = 0; i < 18; i++) {
-      const p = new THREE.Mesh(new THREE.SphereGeometry(0.022, 6, 6), pMat);
-      p.position.set(
-        (Math.random() - 0.5) * 5,
-        Math.random() * 5,
-        (Math.random() - 0.5) * 3
+    for (let i = 0; i < 40; i++) {
+      const p = new THREE.Mesh(
+        new THREE.SphereGeometry(0.02, 4, 4),
+        new THREE.MeshStandardMaterial({ color: 0xfff3c4, emissive: 0xfff3c4, emissiveIntensity: 0.2 })
       );
-      (p as any).userData = {
-        speed: 0.004 + Math.random() * 0.008,
-        offset: Math.random() * Math.PI * 2,
-      };
+      p.position.set((Math.random() - 0.5) * 8, Math.random() * 3 - 1.5, (Math.random() - 0.5) * 8);
+      (p as any).userData = { speed: 0.001 + Math.random() * 0.002, offset: Math.random() * 10 };
       particles.add(p);
     }
     scene.add(particles);
 
-    // ── Mouse parallax ────────────────────────────────────
-    let mouseX = 0, mouseY = 0;
-    let targetRotX = 0, targetRotY = 0;
-    let currentRotX = 0, currentRotY = 0;
-
+    let mouseX = 0, mouseY = 0, currentRotX = 0, currentRotY = 0, targetRotX = 0, targetRotY = 0;
     const onMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
       mouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
@@ -340,178 +326,180 @@ export const Hero = () => {
   }, []);
 
   return (
-    <div className="w-full max-w-[1400px] mx-auto bg-[#f4ecdf] rounded-[32px] shadow-[0_18px_50px_rgba(28,28,28,0.06)] overflow-hidden grid grid-cols-1 lg:grid-cols-2 relative">
-      {/* Radial glow */}
-      <div className="absolute inset-0 pointer-events-none z-0"
-        style={{ background: "radial-gradient(ellipse at 70% 50%, rgba(204,167,82,0.08) 0%, transparent 60%)" }}
-      />
+    <div className="w-full bg-[#f4ecdf] shadow-[0_18px_50px_rgba(28,28,28,0.06)] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-0 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-0 relative">
+        {/* Radial glow */}
+        <div className="absolute inset-0 pointer-events-none z-0"
+          style={{ background: "radial-gradient(ellipse at 70% 50%, rgba(204,167,82,0.08) 0%, transparent 60%)" }}
+        />
 
-      {/* ── Left ───────────────────────────────────────── */}
-      <div className="flex flex-col justify-center px-12 py-14 lg:px-14 relative z-10">
+        {/* ── Left ───────────────────────────────────────── */}
+        <div className="flex flex-col justify-center px-0 py-8 lg:py-20 lg:px-8 relative z-10">
 
-        {/* Eyebrow */}
-        <div className="flex items-center gap-4 mb-7 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-          <div className="h-px w-10 bg-[#cca752] flex-shrink-0" />
-          <span className="text-[#cca752] text-[10px] font-semibold tracking-[0.2em] uppercase">
-            Premium Residences &middot; IDH, Colombo
-          </span>
-        </div>
+          {/* Eyebrow */}
+          <div className="flex items-center gap-4 mb-6 sm:mb-8 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+            <div className="h-px w-8 sm:w-10 bg-[#cca752] flex-shrink-0" />
+            <span className="text-[#cca752] text-[9px] sm:text-[10px] font-semibold tracking-[0.2em] uppercase">
+              Premium Residences · IDH, Colombo
+            </span>
+          </div>
 
-        {/* Headline */}
-        <div className="mb-5">
-          <span
-            className="block font-bold text-[#1c1c1c] uppercase leading-[0.88]"
-            style={{
-              fontFamily: "var(--font-oswald, 'Oswald', sans-serif)",
-              fontSize: "clamp(60px, 7vw, 88px)",
-              animation: "fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards 0.35s",
-              opacity: 0,
-            }}
-          >
-            LIVE<br />ABOVE
-          </span>
-          <span
-            className="block text-[#cca752] leading-[0.88] mt-1"
-            style={{
-              fontFamily: "var(--font-playfair, 'Playfair Display', serif)",
-              fontSize: "clamp(60px, 7vw, 88px)",
-              fontStyle: "italic",
-              animation: "fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards 0.5s",
-              opacity: 0,
-            }}
-          >
-            the rest
-          </span>
-        </div>
-
-        {/* Description */}
-        <p
-          className="text-[#1c1c1c]/65 text-sm leading-relaxed max-w-[360px] mb-10"
-          style={{ animation: "fadeUp 0.6s ease forwards 0.65s", opacity: 0 }}
-        >
-          22 meticulously designed apartments in IDH, Colombo, offering an elevated lifestyle
-          where modern architecture meets curated living.
-        </p>
-
-        {/* CTAs */}
-        <div
-          className="flex items-center gap-7"
-          style={{ animation: "fadeUp 0.6s ease forwards 0.8s", opacity: 0 }}
-        >
-          <button className="px-7 py-3.5 bg-[#1c1c1c] text-white text-sm font-medium rounded-full hover:bg-[#2e2e2e] transition-all hover:-translate-y-px">
-            View Apartments
-          </button>
-          <button className="text-sm font-medium text-[#1c1c1c] hover:text-[#cca752] transition-colors flex items-center gap-1.5 group">
-            Schedule Tour
-            <svg className="transition-transform group-hover:translate-x-1" width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Stats */}
-        <div
-          className="flex items-center gap-8 mt-12"
-          style={{ animation: "fadeUp 0.6s ease forwards 1s", opacity: 0 }}
-        >
-          {[
-            { num: "22", label: "Apartments" },
-            { num: "5★", label: "Amenities" },
-            { num: "IDH", label: "Colombo" },
-          ].map((s, i) => (
-            <div key={i} className="flex items-center gap-8">
-              {i > 0 && <div className="w-px h-8 bg-[#1c1c1c]/10" />}
-              <div>
-                <div
-                  className="text-[#1c1c1c] text-2xl font-bold leading-none"
-                  style={{ fontFamily: "var(--font-oswald, 'Oswald', sans-serif)" }}
-                >
-                  {s.num}
-                </div>
-                <div className="text-[#1c1c1c]/45 text-[10px] uppercase tracking-widest mt-1">
-                  {s.label}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Right / 3D Scene ────────────────────────────── */}
-      <div className="relative flex items-center justify-center py-10 pr-10 pl-0 z-10">
-        {/* Three.js canvas */}
-        <div
-          className="w-full rounded-3xl overflow-hidden"
-          style={{
-            height: 520,
-            animation: "fadeIn 1s ease forwards 0.4s",
-            opacity: 0,
-          }}
-        >
-          <canvas ref={canvasRef} className="w-full h-full rounded-3xl" />
-        </div>
-
-        {/* Amenity badges */}
-        <div className="absolute right-14 top-1/2 -translate-y-1/2 flex flex-col gap-2.5 z-20">
-          {[
-            { label: "Pool & Spa", color: "#cca752" },
-            { label: "Fitness Center", color: "#4caf7d" },
-            { label: "24/7 Security", color: "#5b8fd4" },
-          ].map((b, i) => (
-            <div
-              key={i}
-              className="bg-white/90 backdrop-blur-sm border border-white/80 px-4 py-2 rounded-full text-[11.5px] font-semibold text-[#1c1c1c] flex items-center gap-2 shadow-md whitespace-nowrap"
+          {/* Headline */}
+          <div className="mb-4 sm:mb-6">
+            <span
+              className="block font-bold text-[#1c1c1c] uppercase leading-tight"
               style={{
-                animation: `slideLeft 0.5s ease forwards ${1 + i * 0.15}s`,
+                fontFamily: "var(--font-oswald, 'Oswald', sans-serif)",
+                fontSize: "clamp(40px, 8vw, 88px)",
+                animation: "fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards 0.35s",
                 opacity: 0,
-                transform: "translateX(20px)",
               }}
             >
-              <span
-                className="w-[7px] h-[7px] rounded-full flex-shrink-0"
-                style={{ background: b.color }}
-              />
-              {b.label}
-            </div>
-          ))}
-        </div>
+              LIVE<br />ABOVE
+            </span>
+            <span
+              className="block text-[#cca752] leading-tight mt-1"
+              style={{
+                fontFamily: "var(--font-playfair, 'Playfair Display', serif)",
+                fontSize: "clamp(40px, 8vw, 88px)",
+                fontStyle: "italic",
+                animation: "fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards 0.5s",
+                opacity: 0,
+              }}
+            >
+              the rest
+            </span>
+          </div>
 
-        {/* Availability card */}
-        <div
-          className="absolute bottom-14 left-4 bg-white/90 backdrop-blur-md rounded-2xl px-4 py-3.5 shadow-xl min-w-[160px] z-20"
-          style={{ animation: "fadeUp 0.6s ease forwards 1.4s", opacity: 0 }}
-        >
-          <p className="text-[10px] uppercase tracking-widest text-[#1c1c1c]/40 mb-1">
-            Available Units
-          </p>
+          {/* Description */}
           <p
-            className="text-[#1c1c1c] text-xl font-bold leading-none"
-            style={{ fontFamily: "var(--font-oswald, 'Oswald', sans-serif)" }}
+            className="text-[#1c1c1c]/65 text-sm sm:text-base leading-relaxed max-w-[360px] mb-6 sm:mb-10"
+            style={{ animation: "fadeUp 0.6s ease forwards 0.65s", opacity: 0 }}
           >
-            7 <span className="text-sm font-normal text-[#1c1c1c]/35">of 22</span>
+            22 meticulously designed apartments in IDH, Colombo, offering an elevated lifestyle
+            where modern architecture meets curated living.
           </p>
-          <p className="text-[11px] font-semibold text-[#cca752] mt-1.5 flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#4caf7d] inline-block animate-pulse" />
-            Accepting reservations
-          </p>
-        </div>
-      </div>
 
-      {/* Keyframe styles */}
-      <style>{`
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(18px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to   { opacity: 1; }
-        }
-        @keyframes slideLeft {
-          from { opacity: 0; transform: translateX(20px); }
-          to   { opacity: 1; transform: translateX(0); }
-        }
-      `}</style>
+          {/* CTAs */}
+          <div
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-7"
+            style={{ animation: "fadeUp 0.6s ease forwards 0.8s", opacity: 0 }}
+          >
+            <button className="px-6 sm:px-8 py-3 bg-[#1c1c1c] text-white text-sm font-medium hover:bg-[#2e2e2e] transition-all hover:-translate-y-px w-full sm:w-auto">
+              View Apartments
+            </button>
+            <button className="text-sm font-medium text-[#1c1c1c] hover:text-[#cca752] transition-colors flex items-center gap-1.5 group">
+              Schedule Tour
+              <svg className="transition-transform group-hover:translate-x-1" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Stats */}
+          <div
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 mt-8 sm:mt-12"
+            style={{ animation: "fadeUp 0.6s ease forwards 1s", opacity: 0 }}
+          >
+            {[
+              { num: "22", label: "Apartments" },
+              { num: "5★", label: "Amenities" },
+              { num: "IDH", label: "Colombo" },
+            ].map((s, i) => (
+              <div key={i} className="flex items-center gap-6 sm:gap-8">
+                {i > 0 && <div className="hidden sm:block w-px h-8 bg-[#1c1c1c]/10" />}
+                <div>
+                  <div
+                    className="text-[#1c1c1c] text-2xl font-bold leading-none"
+                    style={{ fontFamily: "var(--font-oswald, 'Oswald', sans-serif)" }}
+                  >
+                    {s.num}
+                  </div>
+                  <div className="text-[#1c1c1c]/45 text-[9px] sm:text-[10px] uppercase tracking-widest mt-1.5">
+                    {s.label}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Right / 3D Scene ────────────────────────────── */}
+        <div className="relative flex items-center justify-center py-8 sm:py-10 px-0 lg:pr-8 z-10">
+          {/* Three.js canvas */}
+          <div
+            className="w-full overflow-hidden"
+            style={{
+              height: "clamp(300px, 60vw, 520px)",
+              animation: "fadeIn 1s ease forwards 0.4s",
+              opacity: 0,
+            }}
+          >
+            <canvas ref={canvasRef} className="w-full h-full" />
+          </div>
+
+          {/* Amenity badges */}
+          <div className="absolute right-2 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-20 hidden sm:flex">
+            {[
+              { label: "Pool & Spa", color: "#cca752" },
+              { label: "Fitness Center", color: "#4caf7d" },
+              { label: "24/7 Security", color: "#5b8fd4" },
+            ].map((b, i) => (
+              <div
+                key={i}
+                className="bg-white/90 backdrop-blur-sm border border-white/80 px-3 sm:px-4 py-2 text-[10px] sm:text-[11.5px] font-semibold text-[#1c1c1c] flex items-center gap-2 shadow-md whitespace-nowrap"
+                style={{
+                  animation: `slideLeft 0.5s ease forwards ${1 + i * 0.15}s`,
+                  opacity: 0,
+                  transform: "translateX(20px)",
+                }}
+              >
+                <span
+                  className="w-[7px] h-[7px] flex-shrink-0"
+                  style={{ background: b.color }}
+                />
+                {b.label}
+              </div>
+            ))}
+          </div>
+
+          {/* Availability card */}
+          <div
+            className="absolute bottom-4 sm:bottom-8 left-2 sm:left-4 bg-white/90 backdrop-blur-md px-3 sm:px-4 py-2.5 sm:py-3.5 shadow-xl min-w-[140px] sm:min-w-[160px] z-20"
+            style={{ animation: "fadeUp 0.6s ease forwards 1.4s", opacity: 0 }}
+          >
+            <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-[#1c1c1c]/40 mb-0.5 sm:mb-1">
+              Available Units
+            </p>
+            <p
+              className="text-[#1c1c1c] text-lg sm:text-xl font-bold leading-none"
+              style={{ fontFamily: "var(--font-oswald, 'Oswald', sans-serif)" }}
+            >
+              7 <span className="text-xs sm:text-sm font-normal text-[#1c1c1c]/35">of 22</span>
+            </p>
+            <p className="text-[10px] sm:text-[11px] font-semibold text-[#cca752] mt-1 sm:mt-1.5 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 flex-shrink-0 bg-[#4caf7d] animate-pulse" />
+              Accepting reservations
+            </p>
+          </div>
+        </div>
+
+        {/* Keyframe styles */}
+        <style>{`
+          @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+          }
+          @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+          }
+          @keyframes slideLeft {
+            from { opacity: 0; transform: translateX(20px); }
+            to   { opacity: 1; transform: translateX(0); }
+          }
+        `}</style>
+      </div>
     </div>
   );
 };
