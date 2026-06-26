@@ -7,26 +7,33 @@ type Property = ImageViewerProperty;
 
 const properties: Property[] = [
   {
-    id: "city-apartment",
-    name: "Contemporary City Apartment",
-    location: "Colombo 03",
-    beds: "2 Bed / 2 Bath",
+    id: "apartment_1",
+    name: "Madinnagoda",
+    location: "Rajagiriya",
     images: [
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=85",
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1200&q=85",
-      "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1200&q=85",
-      "https://images.unsplash.com/photo-1617103996702-96ff29b1c467?w=1200&q=85",
+      "https://res.cloudinary.com/cozks1oq/image/upload/f_auto/v1782293893/image_6_kxiofe.jpg",
+      "https://res.cloudinary.com/cozks1oq/image/upload/f_auto/v1782293893/image_9_sw368j.jpg",
+      "https://res.cloudinary.com/cozks1oq/image/upload/f_auto/v1782293893/image_8_clhhrw.jpg",
+      "https://res.cloudinary.com/cozks1oq/image/upload/f_auto/v1782293890/image_7_brqzdo.jpg",
+      "https://res.cloudinary.com/cozks1oq/image/upload/f_auto/v1782293890/image_5_lrcy0i.jpg",
+      "https://res.cloudinary.com/cozks1oq/image/upload/f_auto/v1782293893/image_11_odkkyb.jpg",
     ],
   },
   {
-    id: "beachfront-residence",
-    name: "Beachfront Residence",
-    location: "Negombo",
-    beds: "3 Bed / 3 Bath",
+    id: "apartment_2",
+    name: "IDH",
+    location: "Angoda",
     images: [
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1200&q=85",
-      "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&q=85",
-      "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=1200&q=85",
+      "https://res.cloudinary.com/cozks1oq/image/upload/f_auto/v1782294207/3_evcxxg.jpg",
+      "https://res.cloudinary.com/cozks1oq/image/upload/v1782294211/7_ynu9wb.jpg",
+      "https://res.cloudinary.com/cozks1oq/image/upload/v1782294221/14_mds9pe.jpg",
+      "https://res.cloudinary.com/cozks1oq/image/upload/v1782294221/15_udbnpr.jpg",
+      "https://res.cloudinary.com/cozks1oq/image/upload/v1782294222/16_tddvu7.jpg",
+      "https://res.cloudinary.com/cozks1oq/image/upload/v1782294216/11_yxw3hh.jpg",
+      "https://res.cloudinary.com/cozks1oq/image/upload/v1782294221/13_yroxcj.jpg",
+      "https://res.cloudinary.com/cozks1oq/image/upload/v1782294211/6_tbzsiu.jpg",
+      "https://res.cloudinary.com/cozks1oq/image/upload/v1782294207/2_crjixo.jpg",
+      "https://res.cloudinary.com/cozks1oq/image/upload/v1782294224/17_i2mimb.jpg"
     ],
   },
 ];
@@ -106,7 +113,7 @@ export const Properties = () => {
                       {property.name}
                     </div>
                     <div className="text-xs text-[#f4ecdf]/70 mt-1">
-                      {property.location} — {property.beds}
+                      {property.location}
                     </div>
                   </div>
                 </div>
