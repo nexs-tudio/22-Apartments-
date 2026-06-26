@@ -5,7 +5,7 @@ export default function AboutUs() {
       id="about"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-[#1c1c1c] text-[#cca752] text-xs tracking-[3px] uppercase px-4 py-1.5 mb-6 sm:mb-8">
           <span className="text-[#f4ecdf]">Est. Colombo</span> · Sri Lanka's Trusted Rental Platform
@@ -61,7 +61,7 @@ export default function AboutUs() {
         </div>
 
         {/* International */}
-        <div className="mb-8 sm:mb-12">
+        <div>
           <SectionLabel>Our international community</SectionLabel>
           <p className="text-sm sm:text-base leading-relaxed text-[#3a2e1e] mb-3 sm:mb-4">
             New country. New city. New chapter. We've helped professionals, families, and
@@ -74,41 +74,16 @@ export default function AboutUs() {
           </p>
         </div>
 
-        {/* Promise */}
-        <div className="bg-[#1c1c1c] text-[#f4ecdf] p-6 sm:p-8 mb-8 sm:mb-10">
-          <SectionLabel dark>Our promise</SectionLabel>
-          <blockquote className="text-lg sm:text-xl italic text-[#cca752] border-l-[3px] border-[#cca752] pl-4 my-4 sm:my-6">
-            Transparency builds trust.
-          </blockquote>
-          <p className="text-sm sm:text-base leading-relaxed text-[#d4c5a9] mb-3 sm:mb-4">
-            Every landlord we partner with is committed to honest communication. Every
-            listing has passed our internal review. Every person — whether searching from
-            Colombo or Copenhagen — deserves to be treated with respect and honesty.
-          </p>
-          <p className="italic text-[#cca752] text-sm sm:text-base">
-            This is more than a rental platform. It is a community built on trust.
-          </p>
-        </div>
-
-        {/* CTA */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
-          <button className="bg-[#cca752] text-[#1c1c1c] font-bold text-sm tracking-wide px-6 sm:px-8 py-3 hover:bg-[#b8913e] transition-colors">
-            Explore Listings
-          </button>
-          <button className="bg-transparent text-[#1c1c1c] font-bold text-sm tracking-wide px-6 sm:px-8 py-3 border-2 border-[#1c1c1c] hover:bg-[#1c1c1c] hover:text-[#f4ecdf] transition-colors">
-            Contact Us
-          </button>
-        </div>
       </div>
     </section>
   );
 }
 
-function SectionLabel({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
+function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className={`flex items-center gap-3 text-xs tracking-[3px] uppercase font-bold text-[#cca752] mb-3 sm:mb-4`}>
+    <div className="flex items-center gap-3 text-xs tracking-[3px] uppercase font-bold text-[#cca752] mb-3 sm:mb-4">
       {children}
-      <span className={`flex-1 h-px ${dark ? "bg-[#cca752]/20" : "bg-[#cca752]/20"}`} />
+      <span className="flex-1 h-px bg-[#cca752]/20" />
     </div>
   );
 }
