@@ -2,10 +2,10 @@
 
 export default function Footer() {
   return (
-    <div className="mt-20">
+    <div>
 
       {/* ── Animated Skyline Divider ── */}
-      <div className="w-full overflow-hidden leading-none mb-[-2px] bg-[#f4ecdf]">
+      <div className="w-full overflow-hidden leading-none mb-[-2px] bg-[#ffffff]">
         <svg
           viewBox="0 0 1200 200"
           xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ export default function Footer() {
             .w6 { animation: twinkle 3.0s ease-in-out infinite; animation-delay: -2.4s; }
           `}</style>
 
-          <rect x="0" y="0" width="1200" height="200" fill="#f4ecdf"/>
+          <rect x="0" y="0" width="1200" height="200" fill="#ffffff"/>
 
           {/* ── Group A ── */}
           <g className="bg-a">
